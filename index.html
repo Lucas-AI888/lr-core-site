@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LR.CORE | High Performance Web Development</title>
+    <meta name="description" content="Escale seu negócio local com um site de velocidade extrema, desenhado para conversão e performance.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155'
+                        },
+                        primary: '#2ECC71',
+                        highlight: '#F39C12'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0F172A;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+        
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(46,204,113,0.15) 0%, rgba(15,23,42,0) 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .highlight-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(243,156,18,0.1) 0%, rgba(15,23,42,0) 70%);
+            border-radius: 50%;
+            bottom: 0px;
+            right: 0px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Base styles for the project card hover */
+        .project-card .img-wrapper {
+            overflow: hidden;
+        }
+        
+        .project-card:hover .img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .project-card .img-wrapper img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Animated grid background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="antialiased bg-slate-900 selection:bg-primary selection:text-white relative">
+    <div class="hero-glow"></div>
+    <div class="highlight-glow"></div>
+    
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 cursor-pointer group">
+                    <span class="font-display font-bold text-2xl tracking-tighter">LR<span class="text-primary">.CORE</span></span>
+                    <div class="h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300"></div>
+                </div>
+                <div>
+                    <a href="#contato" class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-slate-900 bg-primary hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-slate-900 transition-all duration-300 shadow-[0_0_15px_rgba(46,204,113,0.3)] hover:shadow-[0_0_25px_rgba(46,204,113,0.5)] transform hover:-translate-y-0.5">
+                        Fale no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-20">
+        <!-- Hero Section -->
+        <section class="relative bg-grid py-24 sm:py-32 lg:py-40 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <div class="gsap-hero-content opacity-0 translate-y-8">
+                    <div class="inline-flex items-center space-x-2 bg-slate-800/50 border border-slate-700 rounded-full px-4 py-1.5 mb-8">
+                        <span class="flex h-2 w-2 rounded-full bg-highlight"></span>
+                        <span class="text-sm font-medium text-slate-300 uppercase tracking-wide">Alta Performance em Web</span>
+                    </div>
+                    <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-8">
+                        Sites lentos estão <br class="hidden sm:block" />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-300">queimando seu lucro.</span>
+                    </h1>
+                    <p class="mt-4 text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
+                        Transforme seu negócio local em uma máquina de conversão. 
+                        Aplicativos web desenvolvidos com velocidade extrema e auditoria de Inteligência Artificial.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#contato" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-full text-slate-900 bg-primary hover:bg-green-400 transition-all duration-300 shadow-[0_0_20px_rgba(46,204,113,0.4)] hover:shadow-[0_0_35px_rgba(46,204,113,0.6)] transform hover:-translate-y-1">
+                            Aumentar Minhas Vendas Agora
+                            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <p class="text-sm text-slate-500 sm:ml-4">Garantia de Performance 99+ no Google Lighthouse</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Prop -->
+        <section class="py-20 bg-slate-900/50 border-y border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 gsap-fade-up opacity-0">
+                    <h2 class="text-highlight font-semibold tracking-wide uppercase text-sm mb-2">Fundamentos</h2>
+                    <p class="font-display text-3xl sm:text-4xl font-bold">Arquitetura orientada a resultados</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="gsap-stagger-card opacity-0 glass-panel p-8 rounded-2xl hover:border-primary/50 transition-colors duration-300">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3">Velocidade Extrema</h3>
+                        <p class="text-slate-400">Tempo de carregamento abaixo de 1 segundo. Reduza a taxa de rejeição e mantenha o cliente na sua página.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="gsap-stagger-card opacity-0 glass-panel p-8 rounded-2xl hover:border-primary/50 transition-colors duration-300">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3">Otimização de Conversão</h3>
+                        <p class="text-slate-400">Design psicológico com micro-interações que guiam o olhar do usuário direto para o fechamento da compra.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="gsap-stagger-card opacity-0 glass-panel p-8 rounded-2xl hover:border-primary/50 transition-colors duration-300">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3">Crescimento Escalável</h3>
+                        <p class="text-slate-400">Código limpo e escalável preparado para aguentar desde dezenas até milhões de acessos simultâneos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Proof / Showcase -->
+        <section class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="w-full lg:w-1/2 gsap-fade-right opacity-0">
+                        <h2 class="text-highlight font-semibold tracking-wide uppercase text-sm mb-2">Prova Técnica</h2>
+                        <h3 class="font-display text-4xl sm:text-5xl font-bold mb-6">Case: Urban Box</h3>
+                        <p class="text-lg text-slate-400 mb-8 leading-relaxed">
+                            A prova que a junção de design premium com arquitetura de software sólida gera resultados exponenciais. 
+                            Um ecossistema digital imaculado.
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-slate-300">Tempo de Resposta TTFB < 50ms</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-slate-300">+240% de Aumento em Formulários Preenchidos</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-slate-300">SEO On-page maximizado com tags semânticas</span>
+                            </li>
+                        </ul>
+                        <a href="https://urban-box-site.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-medium text-primary hover:text-green-400 transition-colors">
+                            Ver detalhes do projeto 
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/2 project-wrap relative perspective-1000">
+                        <div class="project-card glass-panel rounded-3xl p-2 pb-0 opacity-0 transform translate-y-12">
+                            <div class="img-wrapper rounded-t-2xl overflow-hidden relative border border-slate-700/50 flex">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10"></div>
+                                <img src="assets/images/urban_box.png" alt="Dashboard do Urban Box" class="w-full h-auto object-cover transform scale-100">
+                                <div class="absolute bottom-6 left-6 z-20">
+                                    <h4 class="text-2xl font-display font-bold text-white mb-1">Urban Box App</h4>
+                                    <p class="text-primary font-medium text-sm">Dashboard Analytics</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Decorative elements -->
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/20 blur-3xl rounded-full -z-10"></div>
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-highlight/20 blur-3xl rounded-full -z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why AIOX Section -->
+        <section class="py-24 bg-slate-900 border-t border-slate-800 bg-grid">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center gsap-fade-up opacity-0">
+                <div class="inline-flex items-center justify-center p-3 bg-slate-800 rounded-2xl mb-8 border border-slate-700 shadow-lg">
+                    <svg class="w-8 h-8 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6">Por que focar na tecnologia certa?</h2>
+                <p class="text-xl text-slate-400 mb-10 leading-relaxed">
+                    Não vendemos apenas designs bonitos. Nossos sites são <span class="text-white font-medium">auditados por IA</span> e construídos 
+                    para garantir que cada milissegundo de carregamento e cada pixel trabalhem a favor do 
+                    <span class="text-primary font-semibold">seu lucro</span>.
+                </p>
+                <div class="flex justify-center gap-4 flex-wrap">
+                    <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium border border-slate-700 text-slate-300">Auditoria IA Contínua</span>
+                    <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium border border-slate-700 text-slate-300">Deploy Global Edge</span>
+                    <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium border border-slate-700 text-slate-300">Segurança Enterprise</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer / CTA -->
+    <footer id="contato" class="relative pt-24 pb-12 border-t border-slate-800 overflow-hidden">
+        <div class="absolute inset-0 bg-primary/5 z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="font-display text-4xl sm:text-5xl font-bold mb-6">
+                Pronto para dominar seu mercado?
+            </h2>
+            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+                Não deixe seus concorrentes na frente. Mande uma mensagem agora e vamos desenhar a solução técnica para escalar seu negócio.
+            </p>
+            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-5 border border-transparent text-xl font-bold rounded-2xl text-slate-900 bg-primary hover:bg-green-400 transition-all duration-300 shadow-[0_0_30px_rgba(46,204,113,0.3)] hover:shadow-[0_0_50px_rgba(46,204,113,0.6)] transform hover:-translate-y-1 mb-16">
+                Iniciar Projeto no WhatsApp
+                <svg class="ml-3 -mr-1 w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.663-2.06-.177-.298-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+            </a>
+            
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+                <p>&copy; 2026 LR.CORE Web Development. Todos os direitos reservados.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-primary transition-colors">Termos</a>
+                    <a href="#" class="hover:text-primary transition-colors">Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP Animations -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Init
+        gsap.to(".gsap-hero-content", {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power4.out",
+            delay: 0.2
+        });
+
+        // Value Prop Cards Stagger
+        gsap.to(".gsap-fade-up", {
+            scrollTrigger: {
+                trigger: ".gsap-fade-up",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.to(".gsap-stagger-card", {
+            scrollTrigger: {
+                trigger: ".gsap-stagger-card",
+                start: "top 85%",
+            },
+            y: -10,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+
+        // Showcase Animation
+        gsap.to(".gsap-fade-right", {
+            scrollTrigger: {
+                trigger: ".gsap-fade-right",
+                start: "top 75%",
+            },
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // 3D Card Parallax / Hover setup for Showcase Card
+        const projectCard = document.querySelector('.project-card');
+        
+        gsap.to(projectCard, {
+            scrollTrigger: {
+                trigger: ".project-wrap",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "back.out(1.2)"
+        });
+
+        // Mouse move effect for card
+        document.querySelector('.project-wrap').addEventListener("mousemove", (e) => {
+            const el = e.currentTarget;
+            const card = el.querySelector('.project-card');
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element.
+            const y = e.clientY - rect.top;  // y position within the element.
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
+
+            gsap.to(card, {
+                rotateX: rotateX,
+                rotateY: rotateY,
+                transformPerspective: 1000,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        });
+
+        document.querySelector('.project-wrap').addEventListener("mouseleave", (e) => {
+            const card = e.currentTarget.querySelector('.project-card');
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                duration: 1,
+                ease: "elastic.out(1, 0.3)"
+            });
+        });
+    </script>
+</body>
+</html>
